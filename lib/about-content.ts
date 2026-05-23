@@ -4,7 +4,7 @@ export const aboutContent = {
   tagline: "Building enterprise platforms for logistics, ERP, and intelligent automation.",
   image: {
     /** Put your photo in: public/images/profile.jpg */
-    src: "/images/profile.jpg",
+    src: "/images/profile.JPG",
     alt: "Abraham Dier Spiez — Software Engineer",
   },
   bio: "Software Engineer with 5 years of experience specializing in the development of enterprise-level applications, ERP systems, and logistics optimization engines. Proven track record in building high-scale platforms, including LMS for 500+ users and maritime container tracking for 500+ units. Expert in streamlining corporate workflows through custom e-procurement, auditing, and asset management modules. Currently leveraging AI Agent integration to enhance system intelligence, automate complex scheduling, and optimize data processing within existing project architectures.",
