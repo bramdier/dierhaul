@@ -28,12 +28,12 @@ export const ctmsContent: ModuleContent = {
       caption: "Global port operations with live container visibility",
     },
     {
-      src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1682562031271-94c870a5bc53?q=80",
       alt: "Container yard with organized freight units",
       caption: "Yard-level tracking across inbound and outbound flows",
     },
     {
-      src: "https://images.unsplash.com/photo-1605745341115-065569fd8d8c?w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80",
       alt: "Cargo ship loaded with containers at sea",
       caption: "In-transit monitoring from departure to final delivery",
     },
@@ -83,17 +83,17 @@ export const fleetContent: ModuleContent = {
     "Real-time GPS visibility, driver management, and cargo monitoring for your entire vehicle fleet.",
   slides: [
     {
-      src: "https://images.unsplash.com/photo-1601584115197-04ccd0d65b07?w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1695222833131-54ee679ae8e5?q=80",
       alt: "Heavy haul truck on an open highway",
       caption: "Live GPS tracking for heavy haul and long-haul assets",
     },
     {
-      src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1709687854491-c6f8df59606f?q=80",
       alt: "Fleet vehicles in a logistics depot yard",
       caption: "Centralized fleet overview across depots and routes",
     },
     {
-      src: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1579616043939-95d87a6e8512?q=80",
       alt: "Logistics control room with monitoring screens",
       caption: "Control tower view for dispatch and operations teams",
     },
