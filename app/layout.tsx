@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/main-logo.png",
+        url: "/images/meta-tag.png",
         width: 1200,
         height: 630,
         alt: "Dierhaul — One-Stop Logistics Platform",
