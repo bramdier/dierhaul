@@ -1,3 +1,4 @@
+import PageTransition from "@/components/layout/PageTransition";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
@@ -16,12 +17,16 @@ const inter = Inter({
 
 const siteTitle = "Dierhaul | One-Stop Logistics Platform";
 const siteDescription =
-  "Container Tracking (CTMS), Fleet Management, and Cargo Pricing Calculator — unified logistics operations platform.";
+  "Logistics platform with DHL Shipment Tracking – Unified for live status and delivery estimates.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dierhaul.my.id"),
   title: siteTitle,
   description: siteDescription,
+  icons: {
+    icon: [{ url: "/images/logo-haul.png", type: "image/png" }],
+    apple: [{ url: "/images/logo-haul.png", type: "image/png" }],
+  },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
@@ -51,14 +56,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${inter.variable}`}
+    >
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }

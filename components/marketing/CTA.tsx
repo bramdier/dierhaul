@@ -1,35 +1,27 @@
-import Link from "next/link";
+import MarketingButton from "@/components/ui/MarketingButton";
 
 export default function CTA() {
   return (
-    <section className="signature-gradient px-6 py-24">
-      <div className="mx-auto max-w-4xl text-center">
-        <h2 className="font-headline text-4xl font-extrabold text-white">
-          Ready to Unify Your Logistics?
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-4xl rounded-3xl bg-neutral-950 px-8 py-16 text-center sm:px-12">
+        <h2 className="font-display text-4xl font-medium tracking-tight text-white sm:text-5xl">
+          Ready to track your next shipment?
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-fixed-dim">
-          Start with container tracking, fleet monitoring, or instant cargo
-          pricing — all powered by the Dierhaul platform.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-300">
+          Use DHL Shipment Tracking – Unified on Dierhaul for live status and
+          delivery estimates.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/ctms"
-            className="rounded-xl bg-white px-8 py-4 font-headline text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-tertiary-fixed"
+          <MarketingButton href="/track" variant="secondary">
+            Track shipment
+          </MarketingButton>
+          <MarketingButton
+            href="/login"
+            variant="ghost"
+            className="rounded-full border border-white/25 px-6 py-2.5 !text-white hover:!bg-white/10 hover:!text-white"
           >
-            Open CTMS
-          </Link>
-          <Link
-            href="/fleet"
-            className="rounded-xl border border-white/30 px-8 py-4 font-headline text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-white/10"
-          >
-            View Fleet
-          </Link>
-          <Link
-            href="/calculator"
-            className="rounded-xl border border-white/30 px-8 py-4 font-headline text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-white/10"
-          >
-            Get Quote
-          </Link>
+            Sign in
+          </MarketingButton>
         </div>
       </div>
     </section>

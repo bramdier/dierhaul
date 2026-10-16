@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 const appLinks = [
-  { href: "/ctms", label: "CTMS", icon: "inventory_2" },
-  { href: "/fleet", label: "Fleet", icon: "local_shipping" },
-  { href: "/calculator", label: "Calculator", icon: "calculate" },
+  { href: "/", label: "Home", icon: "home" },
+  { href: "/track", label: "Track", icon: "local_shipping" },
   { href: "/about", label: "About", icon: "person" },
 ];
 

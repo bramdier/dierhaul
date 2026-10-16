@@ -52,6 +52,7 @@
   --font-headline: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-label: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
@@ -72,6 +73,18 @@
   background: linear-gradient(135deg, #00162a 0%, #0d2b45 100%);
 }
 
+.font-display {
+  font-family: var(--font-display);
+}
+
+.marketing-shadow-float {
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.12);
+}
+
+.marketing-shadow-button {
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -85,4 +98,23 @@ body {
 ::selection {
   background-color: var(--color-primary-fixed);
   color: var(--color-on-primary-fixed);
+}
+
+@keyframes cinematic-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.animate-cinematic {
+  animation: cinematic-zoom 6s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cinematic {
+    animation: none;
+  }
 }
