@@ -8,11 +8,10 @@ export default function Hero() {
       <HeroBackground />
       <div className="relative z-10 flex flex-col items-center px-6 pt-28 pb-28 text-center">
         <h1 className="font-display mt-6 max-w-4xl text-5xl leading-none font-medium tracking-tight text-white sm:text-7xl lg:text-8xl">
-          Unified logistics operations for global cargo.
+          Move more. Spend less. Work smarter.
         </h1>
         <p className="mt-5 max-w-lg text-base leading-relaxed text-neutral-100 sm:text-lg">
-          Track shipments in real time with DHL Shipment Tracking – Unified.
-          Status, milestones, and delivery estimates in one place.
+          Turn complex logistics processes into connected, efficient workflows with solutions tailored to your business.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
           <MarketingButton href="/track" variant="secondary">
@@ -23,7 +22,7 @@ export default function Hero() {
             variant="ghost"
             className="!text-white hover:!text-neutral-200"
           >
-            Get Started
+            Explore Our Solutions
           </MarketingButton>
         </div>
       </div>
