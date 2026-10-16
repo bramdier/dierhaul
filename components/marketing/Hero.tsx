@@ -8,7 +8,7 @@ export default function Hero() {
       <HeroBackground />
       <div className="relative z-10 flex flex-col items-center px-6 pt-28 pb-28 text-center">
         <h1 className="font-display mt-6 max-w-4xl text-5xl leading-none font-medium tracking-tight text-white sm:text-7xl lg:text-8xl">
-          Move more. Spend less. Work smarter.
+          A better way to keep business moving.
         </h1>
         <p className="mt-5 max-w-lg text-base leading-relaxed text-neutral-100 sm:text-lg">
           Turn complex logistics processes into connected, efficient workflows with solutions tailored to your business.
