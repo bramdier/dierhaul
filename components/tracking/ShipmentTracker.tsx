@@ -44,9 +44,9 @@ export default function ShipmentTracker() {
     "rounded-3xl border border-neutral-200/80 bg-white p-6 sm:p-8";
 
   return (
-    <div>
-      <div className="mb-10 max-w-2xl">
-        <div className="flex items-center gap-3">
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
+      <div className="mb-10 w-full max-w-2xl text-center">
+        <div className="flex items-center justify-center gap-3">
           <DhlLogo className="h-8 w-auto" />
         </div>
         <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
@@ -61,7 +61,7 @@ export default function ShipmentTracker() {
         </p>
       </div>
 
-      <form onSubmit={handleTrack} className={`${cardClass} max-w-2xl`}>
+      <form onSubmit={handleTrack} className={`${cardClass} w-full max-w-2xl`}>
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-neutral-800">
             Tracking number
@@ -102,7 +102,7 @@ export default function ShipmentTracker() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full rounded-full bg-neutral-950 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:opacity-60 sm:w-auto sm:px-8"
+          className="mt-6 w-full rounded-full bg-neutral-950 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:opacity-60 sm:mx-auto sm:block sm:w-auto sm:px-8"
         >
           {loading ? "Tracking…" : "Track shipment"}
         </button>
@@ -110,7 +110,7 @@ export default function ShipmentTracker() {
 
       {result?.message && (
         <p
-          className={`mt-6 max-w-2xl text-sm ${
+          className={`mt-6 w-full max-w-2xl text-center text-sm ${
             result.source === "dhl" ? "text-neutral-600" : "text-amber-800"
           }`}
         >
@@ -119,7 +119,7 @@ export default function ShipmentTracker() {
       )}
 
       {result?.shipments?.map((shipment) => (
-        <div key={shipment.id} className={`${cardClass} mt-8 max-w-3xl`}>
+        <div key={shipment.id} className={`${cardClass} mt-8 w-full`}>
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
@@ -188,7 +188,7 @@ export default function ShipmentTracker() {
         </div>
       ))}
 
-      <p className="mt-8 max-w-2xl text-xs leading-relaxed text-neutral-500">
+      <p className="mt-8 max-w-2xl text-center text-xs leading-relaxed text-neutral-500">
         Tracking data is provided by DHL Shipment Tracking – Unified. Availability
         depends on carrier and product.
       </p>
