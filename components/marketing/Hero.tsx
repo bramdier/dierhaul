@@ -1,6 +1,6 @@
-import PillBadge from "@/components/ui/PillBadge";
-import MarketingButton from "@/components/ui/MarketingButton";
 import HeroBackground from "@/components/marketing/HeroBackground";
+import MarketingButton from "@/components/ui/MarketingButton";
+import SmoothAnchor from "@/components/ui/SmoothAnchor";
 
 export default function Hero() {
   return (
@@ -26,13 +26,13 @@ export default function Hero() {
           </MarketingButton>
         </div>
       </div>
-      <a
+      <SmoothAnchor
         href="#modules"
         className="absolute bottom-8 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-neutral-900/70 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/85"
       >
         SCROLL
         <span aria-hidden="true">↓</span>
-      </a>
+      </SmoothAnchor>
     </section>
   );
 }

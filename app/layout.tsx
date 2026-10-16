@@ -1,3 +1,4 @@
+import MaterialSymbols from "@/components/layout/MaterialSymbols";
 import PageTransition from "@/components/layout/PageTransition";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
@@ -61,12 +62,15 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
       </head>
       <body className="font-body antialiased">
+        <MaterialSymbols />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>
