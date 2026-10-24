@@ -3,18 +3,80 @@ import ShipmentTracker from "@/components/tracking/ShipmentTracker";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Shipment Tracking | Dierhaul",
+  title: "DHL Shipment Tracking — Live Status & Delivery Estimates | Dierhaul",
   description:
-    "Track DHL shipments with live status, milestones, and delivery estimates via Shipment Tracking – Unified.",
+    "Track your DHL package in real time. Get live status updates, full event history, and estimated delivery dates via DHL Shipment Tracking Unified.",
+  keywords: [
+    "DHL tracking",
+    "track DHL shipment",
+    "DHL parcel tracking",
+    "DHL live status",
+    "DHL delivery estimate",
+    "track DHL package",
+    "DHL Shipment Tracking Unified",
+  ],
+  alternates: {
+    canonical: "https://dierhaul.my.id/track",
+  },
+  openGraph: {
+    title: "DHL Shipment Tracking — Live Status | Dierhaul",
+    description:
+      "Track your DHL package in real time. Live status, event history, and estimated delivery dates.",
+    url: "https://dierhaul.my.id/track",
+    siteName: "Dierhaul",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DHL Shipment Tracking — Dierhaul",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DHL Shipment Tracking — Live Status | Dierhaul",
+    description:
+      "Track your DHL package in real time. Live status, event history, and estimated delivery dates.",
+    images: ["/images/og-image.jpg"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "DHL Shipment Tracker",
+  url: "https://dierhaul.my.id/track",
+  applicationCategory: "LogisticsApplication",
+  operatingSystem: "All",
+  description:
+    "Track DHL shipments in real time. Get live status updates, event history, and estimated delivery dates via DHL Shipment Tracking Unified.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  provider: {
+    "@type": "Organization",
+    name: "Dierhaul",
+    url: "https://dierhaul.my.id",
+  },
 };
 
 export default function TrackPage() {
   return (
-    <main className="min-h-svh overflow-x-hidden bg-neutral-50">
-      <div className="relative mx-auto max-w-screen-2xl px-6 pb-16 pt-28">
-        <HomeNav />
-        <ShipmentTracker />
-      </div>
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main className="min-h-svh overflow-x-hidden bg-neutral-50">
+        <div className="relative mx-auto max-w-screen-2xl px-6 pb-16 pt-28">
+          <HomeNav />
+          <ShipmentTracker />
+        </div>
+      </main>
+    </>
   );
 }

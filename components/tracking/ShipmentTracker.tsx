@@ -1,7 +1,6 @@
 "use client";
 
 import DhlLogo from "@/components/brand/DhlLogo";
-import PillBadge from "@/components/ui/PillBadge";
 import type { TrackingResponse } from "@/lib/dhl/tracking-types";
 import { useState } from "react";
 

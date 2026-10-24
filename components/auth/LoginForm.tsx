@@ -67,25 +67,6 @@ export default function LoginForm() {
         </button>
       </form>
 
-      <div className="my-8 flex items-center gap-4">
-        <div className="h-px flex-1 bg-neutral-200" />
-        <span className="text-xs text-neutral-500">or continue with</span>
-        <div className="h-px flex-1 bg-neutral-200" />
-      </div>
-
-      <div className="flex justify-center gap-3">
-        {["G", "⌘", "A"].map((label) => (
-          <button
-            key={label}
-            type="button"
-            className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-200 bg-white text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
-            aria-label="Social sign-in (demo)"
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-
       <p className="mt-10 text-center text-sm text-neutral-600">
         Need an trial account?{" "}
         <Link

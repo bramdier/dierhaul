@@ -19,7 +19,7 @@ export default function LoginPage() {
           <DierhaulLogo
             href="/"
             priority
-            className="h-28 w-auto drop-shadow-[0_2px_16px_rgba(0,0,0,0.12)] sm:h-36 lg:h-40"
+            className="h-10 w-auto drop-shadow-[0_2px_16px_rgba(0,0,0,0.12)] sm:h-12 lg:h-14"
           />
         </div>
         <div className="relative z-10 max-w-md pb-4 text-left">
