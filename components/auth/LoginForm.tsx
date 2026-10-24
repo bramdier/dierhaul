@@ -2,10 +2,42 @@
 
 import DierhaulLogo from "@/components/brand/DierhaulLogo";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Sign in failed.");
+        return;
+      }
+
+      router.push("/admin/tracker");
+    } catch {
+      setError("Could not reach the server. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="flex w-full max-w-md flex-col items-center text-center lg:items-stretch lg:text-left">
@@ -13,10 +45,7 @@ export default function LoginForm() {
       <h1 className="text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
         Sign in
       </h1>
-      <form
-        className="mt-8 space-y-5"
-        onSubmit={(event) => event.preventDefault()}
-      >
+      <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="login-email"
@@ -28,7 +57,10 @@ export default function LoginForm() {
             id="login-email"
             type="email"
             autoComplete="email"
+            required
             placeholder="you@company.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none ring-orange-500/0 transition-shadow placeholder:text-neutral-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-500/20"
           />
         </div>
@@ -44,14 +76,17 @@ export default function LoginForm() {
               id="login-password"
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
+              required
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-xl border border-neutral-200 bg-white py-3 pr-12 pl-4 text-sm text-neutral-900 outline-none transition-shadow placeholder:text-neutral-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-500/20"
             />
             <button
               type="button"
               className="absolute top-1/2 right-3 -translate-y-1/2 text-neutral-500 hover:text-neutral-800"
               aria-label={showPassword ? "Hide password" : "Show password"}
-              onClick={() => setShowPassword((value) => !value)}
+              onClick={() => setShowPassword((v) => !v)}
             >
               <span className="material-symbols-outlined text-xl">
                 {showPassword ? "visibility_off" : "visibility"}
@@ -59,11 +94,19 @@ export default function LoginForm() {
             </button>
           </div>
         </div>
+
+        {error && (
+          <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+            {error}
+          </p>
+        )}
+
         <button
           type="submit"
-          className="w-full rounded-full bg-neutral-950 py-3.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+          disabled={loading}
+          className="w-full rounded-full bg-neutral-950 py-3.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:opacity-60"
         >
-          Sign in
+          {loading ? "Signing in…" : "Sign in"}
         </button>
       </form>
 

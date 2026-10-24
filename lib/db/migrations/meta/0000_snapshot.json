@@ -1,0 +1,240 @@
+{
+  "id": "59f6f228-3433-4e9a-9334-20510effccaf",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.tracker_config": {
+      "name": "tracker_config",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "page_title": {
+          "name": "page_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Track your shipment'"
+        },
+        "page_subtitle": {
+          "name": "page_subtitle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Live status, milestones, and delivery estimates via DHL Shipment Tracking – Unified.'"
+        },
+        "product_name": {
+          "name": "product_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Shipment Tracking – Unified'"
+        },
+        "logo_url": {
+          "name": "logo_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "label_tracking_number": {
+          "name": "label_tracking_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Tracking number'"
+        },
+        "placeholder_tracking_number": {
+          "name": "placeholder_tracking_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'e.g. 7777777770'"
+        },
+        "show_origin_field": {
+          "name": "show_origin_field",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "label_origin_country": {
+          "name": "label_origin_country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Origin country (optional, ISO)'"
+        },
+        "placeholder_origin_country": {
+          "name": "placeholder_origin_country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'DE'"
+        },
+        "show_postal_field": {
+          "name": "show_postal_field",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "label_postal_code": {
+          "name": "label_postal_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Recipient postal code (optional)'"
+        },
+        "placeholder_postal_code": {
+          "name": "placeholder_postal_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'10115'"
+        },
+        "button_label": {
+          "name": "button_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Track shipment'"
+        },
+        "button_loading_label": {
+          "name": "button_loading_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Tracking…'"
+        },
+        "show_status_badge": {
+          "name": "show_status_badge",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "status_badge_color": {
+          "name": "status_badge_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'emerald'"
+        },
+        "label_shipment_id": {
+          "name": "label_shipment_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Shipment'"
+        },
+        "visible_fields": {
+          "name": "visible_fields",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[\"service\",\"estimatedDelivery\",\"origin\",\"destination\"]'::jsonb"
+        },
+        "field_labels": {
+          "name": "field_labels",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::jsonb"
+        },
+        "show_event_history": {
+          "name": "show_event_history",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "label_event_history": {
+          "name": "label_event_history",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Event history'"
+        },
+        "timeline_dot_color": {
+          "name": "timeline_dot_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'bg-neutral-400'"
+        },
+        "fallback_event_label": {
+          "name": "fallback_event_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Update'"
+        },
+        "show_footer": {
+          "name": "show_footer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "footer_text": {
+          "name": "footer_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Tracking data is provided by DHL Shipment Tracking – Unified. Availability depends on carrier and product.'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "tracker_config_slug_unique": {
+          "name": "tracker_config_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

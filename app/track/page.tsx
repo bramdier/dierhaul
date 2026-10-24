@@ -1,5 +1,8 @@
 import HomeNav from "@/components/layout/HomeNav";
 import ShipmentTracker from "@/components/tracking/ShipmentTracker";
+import { db } from "@/lib/db";
+import { trackerConfig } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -64,7 +67,24 @@ const jsonLd = {
   },
 };
 
-export default function TrackPage() {
+async function getConfig() {
+  const slug = "default";
+  let [row] = await db
+    .select()
+    .from(trackerConfig)
+    .where(eq(trackerConfig.slug, slug))
+    .limit(1);
+
+  if (!row) {
+    [row] = await db.insert(trackerConfig).values({ slug }).returning();
+  }
+
+  return row;
+}
+
+export default async function TrackPage() {
+  const config = await getConfig();
+
   return (
     <>
       <script
@@ -74,7 +94,7 @@ export default function TrackPage() {
       <main className="min-h-svh overflow-x-hidden bg-neutral-50">
         <div className="relative mx-auto max-w-screen-2xl px-6 pb-16 pt-28">
           <HomeNav />
-          <ShipmentTracker />
+          <ShipmentTracker config={config} />
         </div>
       </main>
     </>
