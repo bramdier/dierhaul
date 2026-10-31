@@ -7,20 +7,16 @@ export const HERO_SLIDE_LIMIT = 8;
 
 export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
   {
-    src: "/images/01_container_yard.jpg",
-    alt: "Container terminal walkway at sunrise with trucks and gantry cranes",
+    src: "/images/01_dierhaul_people.png",
+    alt: "People working in a warehouse",
   },
   {
-    src: "/images/02_mega_chiller.jpg",
+    src: "/images/01_dierhaul_awb.png",
     alt: "Heavy industrial cargo transport with coordinated yard operations",
   },
   {
-    src: "/images/03_board_meeting.jpg",
+    src: "/images/01_dierhaul_system.png",
     alt: "Global logistics planning with world map and operations team",
-  },
-  {
-    src: "/images/04_reach_stacker.jpg",
-    alt: "Reach stacker lifting a container in a busy port terminal",
   },
 ];
 
