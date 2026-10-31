@@ -1,18 +1,24 @@
 import HeroBackground from "@/components/marketing/HeroBackground";
 import { headline } from "@/lib/cargo-site";
 import { db } from "@/lib/db";
+import { isMissingRelation } from "@/lib/db/missing-relation";
 import { heroConfig } from "@/lib/db/schema";
 import { resolveHeroSlides } from "@/lib/hero-images";
 import { eq } from "drizzle-orm";
 
 async function loadHeroSlides() {
-  const [row] = await db
-    .select({ slides: heroConfig.slides })
-    .from(heroConfig)
-    .where(eq(heroConfig.slug, "default"))
-    .limit(1);
+  try {
+    const [row] = await db
+      .select({ slides: heroConfig.slides })
+      .from(heroConfig)
+      .where(eq(heroConfig.slug, "default"))
+      .limit(1);
 
-  return resolveHeroSlides(row);
+    return resolveHeroSlides(row);
+  } catch (error) {
+    if (isMissingRelation(error)) return resolveHeroSlides(null);
+    throw error;
+  }
 }
 
 export default async function Hero() {

@@ -1,9 +1,12 @@
 import MarketingShell from "@/components/layout/MarketingShell";
 import TrackTabs from "@/components/tracking/TrackTabs";
 import { db } from "@/lib/db";
-import { trackerConfig } from "@/lib/db/schema";
+import { isMissingRelation } from "@/lib/db/missing-relation";
+import { trackerConfig, type TrackerConfig } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Track an air waybill | Dierhaul",
@@ -58,19 +61,62 @@ const jsonLd = {
   },
 };
 
+function fallbackConfig(): TrackerConfig {
+  const now = new Date();
+  return {
+    id: 0,
+    slug: "default",
+    pageTitle: "Track your shipment",
+    pageSubtitle:
+      "Live status, milestones, and delivery estimates via DHL Shipment Tracking – Unified.",
+    productName: "Shipment Tracking – Unified",
+    logoUrl: null,
+    labelTrackingNumber: "Tracking number",
+    placeholderTrackingNumber: "e.g. 7777777770",
+    showOriginField: true,
+    labelOriginCountry: "Origin country (optional, ISO)",
+    placeholderOriginCountry: "DE",
+    showPostalField: true,
+    labelPostalCode: "Recipient postal code (optional)",
+    placeholderPostalCode: "10115",
+    buttonLabel: "Track shipment",
+    buttonLoadingLabel: "Tracking…",
+    showStatusBadge: true,
+    statusBadgeColor: "emerald",
+    labelShipmentId: "Shipment",
+    visibleFields: ["service", "estimatedDelivery", "origin", "destination"],
+    fieldLabels: {},
+    showEventHistory: true,
+    labelEventHistory: "Event history",
+    timelineDotColor: "bg-neutral-400",
+    fallbackEventLabel: "Update",
+    showFooter: true,
+    footerText:
+      "Tracking data is provided by DHL Shipment Tracking – Unified. Availability depends on carrier and product.",
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
 async function getConfig() {
   const slug = "default";
-  let [row] = await db
-    .select()
-    .from(trackerConfig)
-    .where(eq(trackerConfig.slug, slug))
-    .limit(1);
 
-  if (!row) {
-    [row] = await db.insert(trackerConfig).values({ slug }).returning();
+  try {
+    let [row] = await db
+      .select()
+      .from(trackerConfig)
+      .where(eq(trackerConfig.slug, slug))
+      .limit(1);
+
+    if (!row) {
+      [row] = await db.insert(trackerConfig).values({ slug }).returning();
+    }
+
+    return row;
+  } catch (error) {
+    if (isMissingRelation(error)) return fallbackConfig();
+    throw error;
   }
-
-  return row;
 }
 
 export default async function TrackPage() {

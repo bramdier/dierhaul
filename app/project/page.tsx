@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProjectsClient from "@/components/project/ProjectsClient";
 import { db } from "@/lib/db";
+import { isMissingRelation } from "@/lib/db/missing-relation";
 import { projectConfig } from "@/lib/db/schema";
 import { projectContent } from "@/lib/project-content";
 import { applyStoredProjects } from "@/lib/project-images";
 import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import Link from "next/link";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects | Dierhaul",
@@ -18,17 +21,23 @@ export const metadata: Metadata = {
 
 async function getProjects() {
   const slug = "default";
-  let [row] = await db
-    .select()
-    .from(projectConfig)
-    .where(eq(projectConfig.slug, slug))
-    .limit(1);
 
-  if (!row) {
-    [row] = await db.insert(projectConfig).values({ slug }).returning();
+  try {
+    let [row] = await db
+      .select()
+      .from(projectConfig)
+      .where(eq(projectConfig.slug, slug))
+      .limit(1);
+
+    if (!row) {
+      [row] = await db.insert(projectConfig).values({ slug }).returning();
+    }
+
+    return applyStoredProjects(row);
+  } catch (error) {
+    if (isMissingRelation(error)) return applyStoredProjects(null);
+    throw error;
   }
-
-  return applyStoredProjects(row);
 }
 
 export default async function ProjectPage() {
