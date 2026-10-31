@@ -1,3 +1,4 @@
+import CursorFollower from "@/components/layout/CursorFollower";
 import MaterialSymbols from "@/components/layout/MaterialSymbols";
 import PageTransition from "@/components/layout/PageTransition";
 import type { Metadata } from "next";
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <MaterialSymbols />
         <PageTransition>{children}</PageTransition>
+        <CursorFollower />
       </body>
     </html>
   );
