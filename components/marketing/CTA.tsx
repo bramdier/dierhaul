@@ -1,28 +1,24 @@
-import MarketingButton from "@/components/ui/MarketingButton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-neutral-950 px-8 py-16 text-center sm:px-12">
-        <h2 className="font-display text-4xl font-medium tracking-tight text-white sm:text-5xl">
-          Ready to track your next shipment?
+    <section className="px-6 py-16">
+      <div className="mx-auto flex max-w-4xl flex-col items-start gap-4 rounded-xl bg-primary px-8 py-12 text-primary-foreground">
+        <h2 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+          See it on your flights
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-300">
-          Use DHL Shipment Tracking – Unified on Dierhaul for live status and
-          delivery estimates.
+        <p className="max-w-2xl text-primary-foreground/80">
+          Request a demo of booking through delivery: acceptance, DGR, the
+          e-AWB, the manifest, load planning, and tracking.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <MarketingButton href="/track" variant="secondary">
-            Track shipment
-          </MarketingButton>
-          <MarketingButton
-            href="/login"
-            variant="ghost"
-            className="rounded-full border border-white/25 px-6 py-2.5 !text-white hover:!bg-white/10 hover:!text-white"
-          >
-            Sign in
-          </MarketingButton>
-        </div>
+        <Button
+          nativeButton={false}
+          render={<Link href="/demo" />}
+          variant="secondary"
+        >
+          Request a demo
+        </Button>
       </div>
     </section>
   );

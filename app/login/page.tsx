@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sign in | Dierhaul",
-  description: "Sign in to the Dierhaul logistics platform.",
+  description: "Sign in to Dierhaul for airline cargo operations.",
 };
 
 export default function LoginPage() {
@@ -23,9 +23,9 @@ export default function LoginPage() {
           />
         </div>
         <div className="relative z-10 max-w-md pb-4 text-left">
-          <p className="text-sm font-medium text-neutral-700">You can easily</p>
+          <p className="text-sm font-medium text-neutral-700">Airline cargo</p>
           <p className="mt-2 text-3xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-4xl">
-            Get access to your hub for clarity and logistics operations.
+            Sign in to the operation, from booking to delivery.
           </p>
         </div>
       </div>

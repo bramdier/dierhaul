@@ -3,6 +3,7 @@ import PageTransition from "@/components/layout/PageTransition";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -16,9 +17,9 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const siteTitle = "Dierhaul | One-Stop Logistics Platform";
+const siteTitle = "Dierhaul | Cargo management for airlines";
 const siteDescription =
-  "Logistics platform with DHL Shipment Tracking – Unified for live status and delivery estimates.";
+  "Cargo management for airlines, from booking to delivery. For cargo commercial managers, cargo operations managers, and ground handling supervisors.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dierhaul.my.id"),
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Dierhaul — One-Stop Logistics Platform",
+        alt: "Dierhaul — cargo management for airlines",
       },
     ],
   },
@@ -59,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${inter.variable}`}
+      className={cn(manrope.variable, inter.variable, "font-sans")}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

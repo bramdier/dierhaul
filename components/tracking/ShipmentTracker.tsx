@@ -95,9 +95,9 @@ export default function ShipmentTracker({ config }: Props) {
             <DhlLogo className="h-8 w-auto" />
           )}
         </div>
-        <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
+        <h2 className="font-display mt-6 text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
           {config.pageTitle}
-        </h1>
+        </h2>
         <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:text-lg">
           {config.pageSubtitle.replace(config.productName, "").trim()}{" "}
           <strong className="font-medium text-neutral-800">{config.productName}</strong>.

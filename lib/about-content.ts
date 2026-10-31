@@ -1,75 +1,69 @@
 export const aboutContent = {
   name: "Abraham Dier Spiez",
-  role: "Chief Technology Officer | Logistics Platform Specialist",
-  tagline: "Building enterprise platforms for logistics, ERP, and intelligent automation.",
+  role: "Chief Technology Officer",
+  tagline:
+    "Building cargo management software for airlines, from booking through delivery.",
   firmHeading: "About Dierhaul",
   firmIntro:
-    "We build tailored logistics technology that helps teams track cargo and give customers clear shipment visibility. With deep experience in enterprise ERP and maritime operations, we focus on platforms that scale from pilot to production — including DHL Shipment Tracking – Unified on Dierhaul.",
-  stats: [
-    {
-      value: "500+",
-      label: "Users supported on enterprise platforms",
-    },
-    {
-      value: "5+",
-      label: "Years shipping production logistics software",
-    },
-    {
-      value: "500+",
-      label: "Maritime units tracked in live deployments",
-    },
-  ],
+    "Dierhaul builds cargo management software for airlines, from booking through delivery. Cargo commercial managers, operations managers, and ground handling supervisors use it to run the AWB, acceptance, DGR, the manifest, and load planning — including ULD build-up and offload — as one operation.",
   image: {
     src: "/images/about-dierhaul.jpg",
     alt: "Abraham Dier Spiez and Dhea Octa",
   },
   founderImage: {
     src: "/images/profile.JPG",
-    alt: "Abraham Dier Spiez — Software Engineer",
+    alt: "Abraham Dier Spiez — Chief Technology Officer",
   },
   ceo: {
     name: "Dhea Octa",
     role: "Chief Executive Officer",
     tagline:
-      "Dhea leads Dierhaul’s strategic direction, project delivery, and client partnerships. Working closely with clients and the development team, she turns logistics challenges into clear priorities and practical digital solutions. From initial discussions through implementation, she keeps communication clear, delivery aligned, and client needs at the center of every project.",
+      "Dhea leads Dierhaul’s direction, delivery, and partnerships with cargo commercial managers, cargo operations managers, and ground handling supervisors. She keeps booking through delivery — acceptance, DGR, the e-AWB, the manifest, and the load — aligned with how the airline runs the flight.",
     image: {
       src: "/images/dhea-octa.jpg",
       alt: "Dhea Octa — Chief Executive Officer",
     },
   },
-  bio: "Software Engineer with 5 years of experience specializing in the development of enterprise-level applications, ERP systems, and logistics optimization engines. Proven track record in building high-scale platforms, including LMS for 500+ users and maritime container tracking for 500+ units. Expert in streamlining corporate workflows through custom e-procurement, auditing, and asset management modules. Currently leveraging AI Agent integration to enhance system intelligence, automate complex scheduling, and optimize data processing within existing project architectures.",
+  bio: "Abraham builds Dierhaul’s cargo management platform for airlines. The work covers booking, acceptance, dangerous goods, the electronic air waybill, the flight manifest, and load planning — including ULD build-up and offload — through delivery.",
   highlights: [
     {
-      icon: "business_center",
-      title: "Enterprise Applications",
+      title: "Booking",
       description:
-        "5+ years building ERP systems, e-procurement, auditing, and asset management modules.",
+        "Reserve flight capacity and record the shipment the airline has agreed to carry, including allotment, pieces, and weight.",
     },
     {
-      icon: "inventory_2",
-      title: "Logistics Optimization",
+      title: "Acceptance",
       description:
-        "Maritime container tracking for 500+ units and logistics optimization engines at scale.",
+        "Receive the freight, match it to the booking, and record the pieces and weight accepted into the airline’s custody.",
     },
     {
-      icon: "school",
-      title: "High-Scale Platforms",
+      title: "Dangerous goods",
       description:
-        "Delivered LMS platforms serving 500+ users with reliable, production-grade architecture.",
+        "Check the shipment against the DGR before build-up and keep the acceptance decision on the shipment file.",
     },
     {
-      icon: "smart_toy",
-      title: "AI Agent Integration",
+      title: "e-AWB",
       description:
-        "Enhancing system intelligence with AI agents for scheduling automation and data processing.",
+        "Issue the electronic air waybill that acceptance, the manifest, and tracking all follow.",
+    },
+    {
+      title: "Manifest and load planning",
+      description:
+        "Build ULDs, publish the flight manifest from freight on hand, plan the load, and record offloads.",
+    },
+    {
+      title: "Tracking",
+      description:
+        "Follow the shipment from acceptance to delivery on FSU status messages, and on ONE Record later.",
     },
   ],
   expertise: [
-    "Enterprise ERP Systems",
-    "Logistics Optimization Engines",
-    "Maritime Container Tracking",
-    "E-Procurement & Auditing",
-    "Asset Management Modules",
-    "AI Agent Integration",
+    "Booking and allotment",
+    "Acceptance, pieces, and weight",
+    "Dangerous goods (DGR)",
+    "Electronic air waybill (e-AWB)",
+    "ULD build-up and offload",
+    "Flight manifest and load planning",
+    "FSU status and ONE Record",
   ],
 };

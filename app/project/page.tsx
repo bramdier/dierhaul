@@ -1,6 +1,6 @@
-import HomeNav from "@/components/layout/HomeNav";
-import PillBadge from "@/components/ui/PillBadge";
-import MarketingButton from "@/components/ui/MarketingButton";
+import MarketingShell from "@/components/layout/MarketingShell";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import ProjectsClient from "@/components/project/ProjectsClient";
 import { db } from "@/lib/db";
 import { projectConfig } from "@/lib/db/schema";
@@ -8,6 +8,7 @@ import { projectContent } from "@/lib/project-content";
 import { applyStoredProjects } from "@/lib/project-images";
 import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Projects | Dierhaul",
@@ -34,17 +35,15 @@ export default async function ProjectPage() {
   const projects = await getProjects();
 
   return (
-    <>
-      <main className="overflow-x-hidden bg-neutral-50">
-        {/* ── Hero header ── */}
-        <div className="relative border-b border-neutral-200/80 bg-white px-6 pb-20 pt-28">
-          <HomeNav />
-          <div className="mx-auto max-w-screen-2xl text-center">
-            <PillBadge>{projectContent.eyebrow}</PillBadge>
-            <h1 className="font-display mt-6 text-5xl font-medium tracking-tight text-neutral-950 sm:text-6xl">
+    <MarketingShell>
+      <main className="overflow-x-hidden bg-background">
+        <div className="border-b border-border bg-card px-6 py-16">
+          <div className="mx-auto flex max-w-screen-2xl flex-col items-center gap-4 text-center">
+            <Badge variant="secondary">{projectContent.eyebrow}</Badge>
+            <h1 className="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
               {projectContent.title}
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">
+            <p className="max-w-2xl text-base text-muted-foreground">
               {projectContent.subtitle}
             </p>
           </div>
@@ -54,29 +53,34 @@ export default async function ProjectPage() {
         <ProjectsClient projects={projects} />
 
         {/* ── CTA footer ── */}
-        <section className="px-6 pb-24">
-          <div className="mx-auto max-w-3xl rounded-3xl bg-neutral-950 px-8 py-14 text-center">
-            <h2 className="font-display text-3xl font-medium tracking-tight text-white sm:text-4xl">
-              Start with one module
+        <section className="px-6 py-16">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 rounded-xl bg-primary px-8 py-12 text-center text-primary-foreground">
+            <h2 className="font-heading text-3xl font-medium tracking-tight">
+              Request a demo
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-neutral-300">
-              Start with tracking or sign in to your Dierhaul hub.
+            <p className="max-w-xl text-primary-foreground/80">
+              Walk through booking, acceptance, and the air waybill on your
+              operation.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <MarketingButton href="/track" variant="secondary">
-                Track shipment
-              </MarketingButton>
-              <MarketingButton
-                href="/login"
-                variant="ghost"
-                className="!text-white hover:!text-neutral-300"
+            <div className="flex flex-wrap justify-center gap-2">
+              <Button
+                nativeButton={false}
+                render={<Link href="/demo" />}
+                variant="secondary"
               >
-                Sign in
-              </MarketingButton>
+                Request a demo
+              </Button>
+              <Button
+                nativeButton={false}
+                render={<Link href="/login" />}
+                variant="outline"
+              >
+                Login
+              </Button>
             </div>
           </div>
         </section>
       </main>
-    </>
+    </MarketingShell>
   );
 }

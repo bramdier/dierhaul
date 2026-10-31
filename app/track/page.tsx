@@ -1,30 +1,21 @@
-import HomeNav from "@/components/layout/HomeNav";
-import ShipmentTracker from "@/components/tracking/ShipmentTracker";
+import MarketingShell from "@/components/layout/MarketingShell";
+import TrackTabs from "@/components/tracking/TrackTabs";
 import { db } from "@/lib/db";
 import { trackerConfig } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DHL Shipment Tracking — Live Status & Delivery Estimates | Dierhaul",
+  title: "Track an air waybill | Dierhaul",
   description:
-    "Track your DHL package in real time. Get live status updates, full event history, and estimated delivery dates via DHL Shipment Tracking Unified.",
-  keywords: [
-    "DHL tracking",
-    "track DHL shipment",
-    "DHL parcel tracking",
-    "DHL live status",
-    "DHL delivery estimate",
-    "track DHL package",
-    "DHL Shipment Tracking Unified",
-  ],
+    "Look up an airline air waybill. Live airline status depends on FSU messages and, later, ONE Record. DHL Express lookup is a separate supporting tab.",
   alternates: {
     canonical: "https://dierhaul.my.id/track",
   },
   openGraph: {
-    title: "DHL Shipment Tracking — Live Status | Dierhaul",
+    title: "Track an air waybill | Dierhaul",
     description:
-      "Track your DHL package in real time. Live status, event history, and estimated delivery dates.",
+      "Airline air waybill lookup. Status comes from FSU messages and, later, ONE Record.",
     url: "https://dierhaul.my.id/track",
     siteName: "Dierhaul",
     type: "website",
@@ -33,15 +24,15 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "DHL Shipment Tracking — Dierhaul",
+        alt: "Dierhaul — cargo management for airlines",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DHL Shipment Tracking — Live Status | Dierhaul",
+    title: "Track an air waybill | Dierhaul",
     description:
-      "Track your DHL package in real time. Live status, event history, and estimated delivery dates.",
+      "Airline air waybill lookup. Status comes from FSU messages and, later, ONE Record.",
     images: ["/images/og-image.jpg"],
   },
 };
@@ -49,12 +40,12 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "DHL Shipment Tracker",
+  name: "Dierhaul air waybill tracking",
   url: "https://dierhaul.my.id/track",
-  applicationCategory: "LogisticsApplication",
+  applicationCategory: "BusinessApplication",
   operatingSystem: "All",
   description:
-    "Track DHL shipments in real time. Get live status updates, event history, and estimated delivery dates via DHL Shipment Tracking Unified.",
+    "Look up an airline air waybill. Live status depends on FSU messages and, later, ONE Record.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -86,17 +77,26 @@ export default async function TrackPage() {
   const config = await getConfig();
 
   return (
-    <>
+    <MarketingShell>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="min-h-svh overflow-x-hidden bg-neutral-50">
-        <div className="relative mx-auto max-w-screen-2xl px-6 pb-16 pt-28">
-          <HomeNav />
-          <ShipmentTracker config={config} />
+      <main className="px-6 py-12">
+        <div className="mx-auto flex max-w-3xl flex-col gap-8">
+          <div className="flex flex-col gap-3">
+            <h1 className="font-heading text-4xl font-medium tracking-tight text-foreground">
+              Track an air waybill
+            </h1>
+            <p className="text-base text-muted-foreground">
+              Airline status comes from FSU messages and, later, ONE Record.
+              Express shipments use a separate DHL lookup and are not airline
+              air waybills.
+            </p>
+          </div>
+          <TrackTabs config={config} />
         </div>
       </main>
-    </>
+    </MarketingShell>
   );
 }

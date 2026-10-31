@@ -23,7 +23,7 @@ export default function AppShell({
         <div className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-4">
           <Link
             href="/"
-            className="font-headline text-xl font-black uppercase tracking-tighter text-white"
+            className="font-headline text-xl font-black uppercase tracking-tighter text-primary-foreground"
           >
             Dierhaul
           </Link>
@@ -32,7 +32,7 @@ export default function AppShell({
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider text-white/70 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:text-sm"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider text-primary-foreground/70 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground sm:px-4 sm:text-sm"
               >
                 <span className="material-symbols-outlined text-base">
                   {link.icon}
@@ -53,7 +53,7 @@ export default function AppShell({
               {title}
             </h1>
             {subtitle && (
-              <p className="mt-2 max-w-2xl text-secondary">{subtitle}</p>
+              <p className="mt-2 max-w-2xl text-muted-foreground">{subtitle}</p>
             )}
           </div>
         )}
