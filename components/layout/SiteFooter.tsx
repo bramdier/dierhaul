@@ -53,12 +53,6 @@ export default function SiteFooter() {
             >
               Demo / Contact
             </Link>
-            <Link
-              href="/login"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Login
-            </Link>
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm font-medium text-foreground">Contact</p>

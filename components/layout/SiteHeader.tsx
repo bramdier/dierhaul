@@ -171,17 +171,6 @@ export default function SiteHeader() {
         </NavigationMenu>
         <div className="ml-auto flex items-center gap-2">
           <Button
-            className={cn(
-              "hidden sm:inline-flex",
-              overHero && "text-white hover:bg-white/15 hover:text-white",
-            )}
-            nativeButton={false}
-            render={<Link href="/login" />}
-            variant="ghost"
-          >
-            Login
-          </Button>
-          <Button
             className="hidden sm:inline-flex"
             nativeButton={false}
             render={<Link href="/demo" />}
@@ -243,13 +232,6 @@ export default function SiteHeader() {
                     render={<Link href="/demo" onClick={closeMenu} />}
                   >
                     Request a demo
-                  </Button>
-                  <Button
-                    nativeButton={false}
-                    render={<Link href="/login" onClick={closeMenu} />}
-                    variant="outline"
-                  >
-                    Login
                   </Button>
                 </div>
               </nav>

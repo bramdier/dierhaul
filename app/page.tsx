@@ -5,8 +5,6 @@ import Hero from "@/components/marketing/Hero";
 import SolutionsGrid from "@/components/marketing/SolutionsGrid";
 import WorkflowStrip from "@/components/marketing/WorkflowStrip";
 
-export const dynamic = "force-dynamic";
-
 export default function HomePage() {
   return (
     <MarketingShell>

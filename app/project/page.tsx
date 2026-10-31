@@ -2,16 +2,9 @@ import MarketingShell from "@/components/layout/MarketingShell";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProjectsClient from "@/components/project/ProjectsClient";
-import { db } from "@/lib/db";
-import { isMissingRelation } from "@/lib/db/missing-relation";
-import { projectConfig } from "@/lib/db/schema";
 import { projectContent } from "@/lib/project-content";
-import { applyStoredProjects } from "@/lib/project-images";
-import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import Link from "next/link";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects | Dierhaul",
@@ -19,30 +12,7 @@ export const metadata: Metadata = {
     "Dierhaul projects: DHL shipment tracking and logistics systems for containers, fleet, contracts, and ERP.",
 };
 
-async function getProjects() {
-  const slug = "default";
-
-  try {
-    let [row] = await db
-      .select()
-      .from(projectConfig)
-      .where(eq(projectConfig.slug, slug))
-      .limit(1);
-
-    if (!row) {
-      [row] = await db.insert(projectConfig).values({ slug }).returning();
-    }
-
-    return applyStoredProjects(row);
-  } catch (error) {
-    if (isMissingRelation(error)) return applyStoredProjects(null);
-    throw error;
-  }
-}
-
-export default async function ProjectPage() {
-  const projects = await getProjects();
-
+export default function ProjectPage() {
   return (
     <MarketingShell>
       <main className="overflow-x-hidden bg-background">
@@ -58,10 +28,8 @@ export default async function ProjectPage() {
           </div>
         </div>
 
-        {/* ── Projects: featured + accordion ── */}
-        <ProjectsClient projects={projects} />
+        <ProjectsClient projects={projectContent.items} />
 
-        {/* ── CTA footer ── */}
         <section className="px-6 py-16">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 rounded-xl bg-primary px-8 py-12 text-center text-primary-foreground">
             <h2 className="font-heading text-3xl font-medium tracking-tight">
@@ -71,22 +39,13 @@ export default async function ProjectPage() {
               Walk through booking, acceptance, and the air waybill on your
               operation.
             </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              <Button
-                nativeButton={false}
-                render={<Link href="/demo" />}
-                variant="secondary"
-              >
-                Request a demo
-              </Button>
-              <Button
-                nativeButton={false}
-                render={<Link href="/login" />}
-                variant="outline"
-              >
-                Login
-              </Button>
-            </div>
+            <Button
+              nativeButton={false}
+              render={<Link href="/demo" />}
+              variant="secondary"
+            >
+              Request a demo
+            </Button>
           </div>
         </section>
       </main>

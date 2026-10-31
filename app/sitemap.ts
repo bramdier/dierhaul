@@ -1,6 +1,8 @@
 import { solutions } from "@/lib/cargo-site";
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE_URL = "https://dierhaul.my.id";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,12 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/login`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
     },
   ];
 }

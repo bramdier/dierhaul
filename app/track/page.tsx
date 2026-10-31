@@ -1,24 +1,19 @@
 import MarketingShell from "@/components/layout/MarketingShell";
 import TrackTabs from "@/components/tracking/TrackTabs";
-import { db } from "@/lib/db";
-import { isMissingRelation } from "@/lib/db/missing-relation";
-import { trackerConfig, type TrackerConfig } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { trackerContent } from "@/lib/tracker-content";
 import type { Metadata } from "next";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Track an air waybill | Dierhaul",
   description:
-    "Look up an airline air waybill. Live airline status depends on FSU messages and, later, ONE Record. DHL Express lookup is a separate supporting tab.",
+    "Look up an airline air waybill number. Live carrier status is not available on this site.",
   alternates: {
     canonical: "https://dierhaul.my.id/track",
   },
   openGraph: {
     title: "Track an air waybill | Dierhaul",
     description:
-      "Airline air waybill lookup. Status comes from FSU messages and, later, ONE Record.",
+      "Airline air waybill lookup. Live carrier status is not available on this site.",
     url: "https://dierhaul.my.id/track",
     siteName: "Dierhaul",
     type: "website",
@@ -35,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Track an air waybill | Dierhaul",
     description:
-      "Airline air waybill lookup. Status comes from FSU messages and, later, ONE Record.",
+      "Airline air waybill lookup. Live carrier status is not available on this site.",
     images: ["/images/og-image.jpg"],
   },
 };
@@ -48,7 +43,7 @@ const jsonLd = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "All",
   description:
-    "Look up an airline air waybill. Live status depends on FSU messages and, later, ONE Record.",
+    "Look up an airline air waybill number. Live carrier status is not available on this site.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -61,67 +56,7 @@ const jsonLd = {
   },
 };
 
-function fallbackConfig(): TrackerConfig {
-  const now = new Date();
-  return {
-    id: 0,
-    slug: "default",
-    pageTitle: "Track your shipment",
-    pageSubtitle:
-      "Live status, milestones, and delivery estimates via DHL Shipment Tracking – Unified.",
-    productName: "Shipment Tracking – Unified",
-    logoUrl: null,
-    labelTrackingNumber: "Tracking number",
-    placeholderTrackingNumber: "e.g. 7777777770",
-    showOriginField: true,
-    labelOriginCountry: "Origin country (optional, ISO)",
-    placeholderOriginCountry: "DE",
-    showPostalField: true,
-    labelPostalCode: "Recipient postal code (optional)",
-    placeholderPostalCode: "10115",
-    buttonLabel: "Track shipment",
-    buttonLoadingLabel: "Tracking…",
-    showStatusBadge: true,
-    statusBadgeColor: "emerald",
-    labelShipmentId: "Shipment",
-    visibleFields: ["service", "estimatedDelivery", "origin", "destination"],
-    fieldLabels: {},
-    showEventHistory: true,
-    labelEventHistory: "Event history",
-    timelineDotColor: "bg-neutral-400",
-    fallbackEventLabel: "Update",
-    showFooter: true,
-    footerText:
-      "Tracking data is provided by DHL Shipment Tracking – Unified. Availability depends on carrier and product.",
-    createdAt: now,
-    updatedAt: now,
-  };
-}
-
-async function getConfig() {
-  const slug = "default";
-
-  try {
-    let [row] = await db
-      .select()
-      .from(trackerConfig)
-      .where(eq(trackerConfig.slug, slug))
-      .limit(1);
-
-    if (!row) {
-      [row] = await db.insert(trackerConfig).values({ slug }).returning();
-    }
-
-    return row;
-  } catch (error) {
-    if (isMissingRelation(error)) return fallbackConfig();
-    throw error;
-  }
-}
-
-export default async function TrackPage() {
-  const config = await getConfig();
-
+export default function TrackPage() {
   return (
     <MarketingShell>
       <script
@@ -135,12 +70,12 @@ export default async function TrackPage() {
               Track an air waybill
             </h1>
             <p className="text-base text-muted-foreground">
-              Airline status comes from FSU messages and, later, ONE Record.
-              Express shipments use a separate DHL lookup and are not airline
-              air waybills.
+              Check an airline air waybill number here. Express shipment numbers
+              use a separate form and are not airline air waybills. Live carrier
+              lookup is not available on this site.
             </p>
           </div>
-          <TrackTabs config={config} />
+          <TrackTabs config={trackerContent} />
         </div>
       </main>
     </MarketingShell>
