@@ -68,7 +68,7 @@ export default function ImagePoolManager({
       <h1 className="text-xl font-semibold tracking-tight text-neutral-950">Image Pooling</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600">
         Upload an image and give it a file name. It is then available when you choose a site
-        image for a project.
+        image for the homepage hero or a project.
       </p>
 
       <form

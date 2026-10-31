@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 const links = [
+  { href: "/admin/hero", label: "Hero image" },
   { href: "/admin/tracker", label: "Tracker settings" },
   { href: "/admin/project", label: "Project images" },
   { href: "/admin/images", label: "Image Pooling" },

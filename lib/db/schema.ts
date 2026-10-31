@@ -77,3 +77,16 @@ export const projectConfig = pgTable("project_config", {
 
 export type ProjectConfig = typeof projectConfig.$inferSelect;
 export type NewProjectConfig = typeof projectConfig.$inferInsert;
+
+// Homepage hero slideshow. `slides` is null until the admin saves a list;
+// until then the built-in hero photos are used.
+export const heroConfig = pgTable("hero_config", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  slides: jsonb("slides").$type<{ src: string; alt: string }[] | null>(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export type HeroConfig = typeof heroConfig.$inferSelect;
+export type NewHeroConfig = typeof heroConfig.$inferInsert;

@@ -1,40 +1,29 @@
 "use client";
 
+import type { HeroSlide } from "@/lib/hero-images";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const SLIDE_INTERVAL_MS = 6000;
 
-export const heroSlides = [
-  {
-    src: "/images/01_container_yard.jpg",
-    alt: "Container terminal walkway at sunrise with trucks and gantry cranes",
-  },
-  {
-    src: "/images/02_mega_chiller.jpg",
-    alt: "Heavy industrial cargo transport with coordinated yard operations",
-  },
-  {
-    src: "/images/03_board_meeting.jpg",
-    alt: "Global logistics planning with world map and operations team",
-  },
-  {
-    src: "/images/04_reach_stacker.jpg",
-    alt: "Reach stacker lifting a container in a busy port terminal",
-  },
-] as const;
-
-export default function HeroBackground() {
+export default function HeroBackground({ slides }: { slides: HeroSlide[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [preloadNext, setPreloadNext] = useState(false);
   const activeRef = useRef(0);
+  const count = slides.length;
 
   useEffect(() => {
+    activeRef.current = 0;
+    setActiveIndex(0);
+    setPreviousIndex(null);
+    setPreloadNext(false);
+    if (count < 2) return;
+
     const preloadId = window.setTimeout(() => setPreloadNext(true), 1200);
     const id = window.setInterval(() => {
       const current = activeRef.current;
-      const next = (current + 1) % heroSlides.length;
+      const next = (current + 1) % count;
       activeRef.current = next;
       setPreviousIndex(current);
       setActiveIndex(next);
@@ -43,27 +32,33 @@ export default function HeroBackground() {
       window.clearTimeout(preloadId);
       window.clearInterval(id);
     };
-  }, []);
+  }, [count]);
 
-  const nextIndex = (activeIndex + 1) % heroSlides.length;
+  if (count === 0) return null;
+
+  const safeActive = activeIndex < count ? activeIndex : 0;
+  const safePrevious =
+    previousIndex !== null && previousIndex < count ? previousIndex : null;
+  const nextIndex = (safeActive + 1) % count;
   const visibleIndexes = Array.from(
     new Set(
-      previousIndex === null
+      safePrevious === null
         ? preloadNext
-          ? [activeIndex, nextIndex]
-          : [activeIndex]
-        : [previousIndex, activeIndex, nextIndex],
+          ? [safeActive, nextIndex]
+          : [safeActive]
+        : [safePrevious, safeActive, nextIndex],
     ),
   );
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
       {visibleIndexes.map((index) => {
-        const slide = heroSlides[index];
-        const isActive = index === activeIndex;
+        const slide = slides[index];
+        if (!slide) return null;
+        const isActive = index === safeActive;
         return (
           <div
-            key={slide.src}
+            key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               isActive ? "opacity-100" : "opacity-0"
             }`}
